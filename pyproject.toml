@@ -5,7 +5,13 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uiuc_apartments"
-version = "0.0.2"
+version = "0.0.3"
+
+dependencies = [
+    "requests",
+    "bs4"
+]
+
 authors = [
   { name="Pete Stenger", email="pete@stenger.io" },
   { name="Richard Liu", email="richy.liu.2002@gmail.com" }
