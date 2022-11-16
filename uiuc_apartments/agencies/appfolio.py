@@ -31,7 +31,8 @@ class AppFolioBase(AgencyBase):
             link = self.base_url + div.find('a', target="_blank")['href']
 
             rent = int(lookup['RENT'].replace('$', '').replace(',', ''))
-            [rawBed, rawBath] = lookup['Bed / Bath'].split('/ ')
+            # some listings do not have bed / bath provided
+            [rawBed, rawBath] = lookup.get('Bed / Bath', '0 / 0').split('/ ')
             rawBed = rawBed.split(' ')[0].strip()
             if rawBed == 'Studio':
                 is_studio = True
