@@ -50,7 +50,7 @@ class Smith(AgencyBase):
             address = prop['street1'] + prop['street2'] + unit['unit'] + \
                 ', ' + prop['city'] + ', ' + prop['state'] + ' ' + prop['zip']
             rent = float(unit['marketrent'].replace(',', '').replace('$', ''))
-            bed = float(prop['bedrooms'])
+            bed = int(prop['bedrooms'])
             bath = float(prop['bathrooms'])
             is_studio = False
             link = 'https://smithapartments-cu.com/property-details/?pid=' + \
