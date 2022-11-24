@@ -25,8 +25,7 @@ class JSM(AgencyBase):
             rent = article.find('div', class_='unit__card-rent').text.split(
                 'RENT:')[1].split('-')[-1].replace('$', '').strip()
             if rent == 'No Units Available':
-                rent = 0
-                available_date = None
+                continue
             else:
                 rent = int(rent)
                 available_date = '2021-01-01'
