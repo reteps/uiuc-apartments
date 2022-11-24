@@ -35,6 +35,12 @@ class Bankier(AgencyBase):
                 # Extract the price from the price text (use -1 to get upper bound)
                 rent = float(price.split(
                     '$')[-1].split('-')[-1].split(' ')[0].replace(',', '').replace('*', ''))
+
+                # we've accidentally extracted utilities pricing
+                if rent < 100:
+                    # use -2 to get the second-to-last price, which is actual rent
+                    rent = float(price.split(
+                    '$')[-2].split('-')[-1].split(' ')[0].replace(',', '').replace('*', ''))
                 # Extract the bed and bath from the bed_bath text using a regex
                 raw_bed = re.search(
                     r'(?:(\d+) Bedrooms)|(Efficiency)\/', bed_bath)

@@ -25,6 +25,9 @@ class Smile(AgencyBase):
                 bedrooms = 1
                 is_studio = True
             market_rent = int(details['market_rent'])
+            # rent == 0 if sublease only
+            if market_rent == 0:
+                continue
             link = "https://www.smilestudentliving.com/listings/detail/" + \
                 apartment['page_item_url']
             apartments.append(Apartment(address, market_rent, bedrooms,

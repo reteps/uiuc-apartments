@@ -28,6 +28,7 @@ class GreenStreetRealty(AgencyBase):
                     try:
                         raw_bed_txt = kind.find(
                             'div', class_='beds').text.lower()
+                        raw_bed_txt = raw_bed_txt.replace('+', '')
                         if 'studio' in raw_bed_txt:
                             is_studio = True
                             bed = 1
