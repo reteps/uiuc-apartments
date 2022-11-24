@@ -24,7 +24,7 @@ class MHM(AgencyBase):
             # Get all p tags with class="ppricebox"
             ps = location.find_all('p', class_='ppricebox')
             for p in ps:
-                print(p.text)
+                # print(p.text)
                 # A regex to capture the word optional word bath followed by a number
                 regex = re.compile(
                     r'(?P<bed>\d+) Bed(?:\/(?P<bath>[\d\.]+) Bath)?.*:(?:.*\$(?P<rent>\d+,?\d+)\W{1,2}?(?P<kind>\w+)|.*(?P<available>LEASED!))')

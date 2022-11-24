@@ -41,7 +41,9 @@ class AppFolioBase(AgencyBase):
                 is_studio = False
                 bed = int(rawBed)
             bath = float(rawBath.split(' ')[0].strip())
-            available_date = lookup['Available'].strip().lower()
+            available_date = lookup.get('Available', None)
+            if available_date:
+                available_date = available_date.strip().lower()
             if available_date == 'now':
                 # current date as mm/dd/yy
                 available_date = datetime.now().strftime('%m/%d/%y')
