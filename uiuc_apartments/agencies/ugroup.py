@@ -75,5 +75,5 @@ class UniversityGroup(AgencyBase):
                     address, price, bedrooms, bathrooms, link, available_date, self.name, is_studio))
 
             # page += 1
-        print("returning here")
+        # print("returning here")
         return apartments
