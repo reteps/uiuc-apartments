@@ -41,7 +41,8 @@ class MHM(AgencyBase):
                     if rent:
                         rent = int(rent.replace(',', ''))
                     else:
-                        rent = 0
+                        # If rent is not found, apartment is leased (or something is broken)
+                        continue
                     # Get the kind of unit
                     kind = match.group('kind')
                     if kind == 'person':
