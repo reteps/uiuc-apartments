@@ -5,7 +5,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "uiuc_apartments"
-version = "0.0.6"
+version = "0.0.7"
 
 dependencies = [
     "requests",
@@ -15,6 +15,7 @@ dependencies = [
 authors = [
   { name="Pete Stenger", email="pete@stenger.io" },
   { name="Richard Liu", email="richy.liu.2002@gmail.com" }
+  { name="Hassam Uddin", email="hassamuddin20@gmail.com" }
 ]
 description = "A wrapper around a webscraper for popular rental agencies on UIUC campus"
 readme = "README.md"
