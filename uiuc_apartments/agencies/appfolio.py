@@ -32,7 +32,13 @@ class AppFolioBase(AgencyBase):
 
             rent = int(lookup['RENT'].replace('$', '').replace(',', ''))
             # some listings do not have bed / bath provided
-            [rawBed, rawBath] = lookup.get('Bed / Bath', '0 / 0').split('/ ')
+            rawBedBath = lookup.get('Bed / Bath', '0 / 0').split('/ ')
+            if len(rawBedBath) == 2:
+                [rawBed, rawBath] = rawBedBath
+            else:
+                # only bedroom provided, assume 1 bath
+                rawBed = rawBedBath[0]
+                rawBath = '1 ba'
             rawBed = rawBed.split(' ')[0].strip()
             if rawBed == 'Studio':
                 is_studio = True
@@ -47,6 +53,13 @@ class AppFolioBase(AgencyBase):
             if available_date == 'now':
                 # current date as mm/dd/yy
                 available_date = datetime.now().strftime('%m/%d/%y')
+
+            # Correct for individual leases
+            title = div.find('h2', class_='js-listing-title').text
+            description = div.find('p', class_='js-listing-description').text
+            text_blob = title.lower() + description.lower()
+            if 'individual' in text_blob:
+                rent = rent * bed
 
             apartments.append(Apartment(address, rent, bed, bath,
                                         link, available_date, self.name, is_studio))
@@ -77,7 +90,7 @@ class Weiner(AppFolioBase):
 
 class Ramshaw(AppFolioBase):
     def __init__(self):
-        url = 'https://ram.appfolio.com/'
+        url = 'https://ram.appfolio.com/listings'
         name = "Ramshaw Real Estate"
         super().__init__(url, name)
 
